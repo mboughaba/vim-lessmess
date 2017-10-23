@@ -14,7 +14,7 @@ Plugin 'mboughaba/vim-lessmess'
 
 ## Feature
 * Remove trailing white space onsave or on demand.
-* Replace all sequences of <Tab> with new string of white-space.
+* Replace all sequences of Tab with new string of white-space.
 * Remove empty lines at the end of the file.
 
 ## Usage
@@ -30,7 +30,7 @@ To enable/disable white-space highlighting add the following config too.
 ```vim
 let g:enable_lessmess_highlighting = 1
 ```
-Default toggle mapping is <leader>l which can be changed using
+Default toggle mapping is leader + l which can be changed using
 ```vim
 let g:lessmess_highlighting_map = '<leader>h'
 ```
