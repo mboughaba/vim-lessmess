@@ -7,6 +7,7 @@ Keeping it stupid simple. I had the code around in my vimrc and I decided to mak
 If you don't mind white-space in you files this is the best time to navigate away.
 
 ## Instalation
+Using [Vundle](https://github.com/VundleVim/Vundle.vim)
 ```vim
 Plugin 'mboughaba/vim-lessmess'
 ```
@@ -28,4 +29,8 @@ let g:enable_lessmess_onsave = 1
 To enable/disable white-space highlighting add the following config too.
 ```vim
 let g:enable_lessmess_highlighting = 1
+```
+Default toggle mapping is <leader>l which can be changed using
+```vim
+let g:lessmess_highlighting_map = '<leader>h'
 ```
