@@ -1,9 +1,22 @@
+     ██╗     ███████╗███████╗███████╗███╗   ███╗███████╗███████╗███████╗
+     ██║     ██╔════╝██╔════╝██╔════╝████╗ ████║██╔════╝██╔════╝██╔════╝
+     ██║     █████╗  ███████╗███████╗██╔████╔██║█████╗  ███████╗███████╗
+     ██║     ██╔══╝  ╚════██║╚════██║██║╚██╔╝██║██╔══╝  ╚════██║╚════██║
+     ███████╗███████╗███████║███████║██║ ╚═╝ ██║███████╗███████║███████║
+     ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
+                                                                      by
+                                             ┌┬┐┌┐ ┌─┐┬ ┬┌─┐┬ ┬┌─┐┌┐ ┌─┐
+                                             │││├┴┐│ ││ ││ ┬├─┤├─┤├┴┐├─┤
+                                             ┴ ┴└─┘└─┘└─┘└─┘┴ ┴┴ ┴└─┘┴ ┴
+
 # Lessmess VIM Plugin
 ## Motivation
 Every VIM user has a custom config to remove trailing white-space. Such a trivial task isn't it?
-Well the idea is move this custom logic to its own plugin without having an impact on performance. Don't expect flying space ship when you do colon write.
+Well the idea is move this custom logic to its own plugin without having an impact on performance. D
+on't expect flying space ship when you do colon write.
 
-Keeping it stupid simple. I had the code around in my vimrc and I decided to make a plugin out of it.
+Keeping it stupid simple. I had the code around in my vimrc and I decided to make a plugin out of it
+.
 If you don't mind white-space in you files this is the best time to navigate away.
 
 ## Instalation
