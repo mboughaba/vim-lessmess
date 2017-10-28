@@ -41,7 +41,7 @@ To enable/disable white-space highlighting add the following configuration too.
 ```vim
 let g:enable_lessmess_highlighting = 1
 ```
-Default mapping to toggle highlighting is **<leader>l** which can be changed using
+Default mapping to toggle highlighting is **\<leader>l** which can be changed using
 ```vim
 let g:lessmess_highlighting_map = '<leader>h'
 ```
