@@ -11,13 +11,11 @@
 
 # Lessmess VIM Plugin
 ## Motivation
-Every VIM user has a custom config to remove trailing white-space. Such a trivial task isn't it?
-Well the idea is move this custom logic to its own plugin without having an impact on performance. D
-on't expect flying space ship when you do colon write.
+Every VIM user has a custom configuration to remove trailing white-spaces. Such a trivial task isn't it?
+Well the idea here is all about moving that custom logic to its own plugin without having an impact on performance.
 
-Keeping it stupid simple. I had the code around in my vimrc and I decided to make a plugin out of it
-.
-If you don't mind white-space in you files this is the best time to navigate away.
+Keeping it stupid simple. I had the code around in my ![.vimrc](https://github.com/mboughaba/dotfiles/blob/master/.vimrc) and I decided to make a plugin out of it.
+If you don't mind white-spaces in your files this is the best time to navigate away.
 
 ## Instalation
 Using [Vundle](https://github.com/VundleVim/Vundle.vim)
@@ -25,7 +23,7 @@ Using [Vundle](https://github.com/VundleVim/Vundle.vim)
 Plugin 'mboughaba/vim-lessmess'
 ```
 
-## Feature
+## Features
 * Remove trailing white space onsave or on demand.
 * Replace all sequences of Tab with new string of white-space.
 * Remove empty lines at the end of the file.
@@ -34,16 +32,16 @@ Plugin 'mboughaba/vim-lessmess'
 There are two functions
 **StripWhitespaces** and **ToggleWhitespacesDisplay**.
 
-To enable StripWhitespaces onsave make sure to include the config below in your vimrc
+To enable StripWhitespaces **onsave** make sure to include the configuration below in your vimrc
 ```vim
 let g:enable_lessmess_onsave = 1
 ```
 
-To enable/disable white-space highlighting add the following config too.
+To enable/disable white-space highlighting add the following configuration too.
 ```vim
 let g:enable_lessmess_highlighting = 1
 ```
-Default toggle mapping is leader + l which can be changed using
+Default mapping to toggle highlighting is **<leader>l** which can be changed using
 ```vim
 let g:lessmess_highlighting_map = '<leader>h'
 ```
