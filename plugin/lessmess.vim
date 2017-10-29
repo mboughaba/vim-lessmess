@@ -34,7 +34,21 @@
 " Repository: https://github.com/mboughaba/vim-lessmess
 " Description: This plugin removes all empty white-spaces in a file
 "
-" Commands {{{1 "
+" Prevent loading the plugin multiple times
+" loading {{{1 "
+if exists('g:loaded_lessmess_plugin')
+    fini
+en
+let g:loaded_lessmess_plugin = 1
+
+"
+" Set default mapping if not configured by the user
+"
+if !exists('g:lessmess_highlighting_map')
+    let g:lessmess_highlighting_map = '<leader>l'
+en
+" 1}}} "
+" Commands {{{2 "
 "
 " Commands
 "
@@ -43,4 +57,4 @@ com! ToggleWhitespacesDisplay cal lessmess#ToggleWhitespacesDisplay()
 if g:lessmess_highlighting_map != '' && !hasmapto(':<c-u>ToggleWhitespacesDisplay<cr>', 'n')
     exe 'nn <silent>' g:lessmess_highlighting_map ':ToggleWhitespacesDisplay<cr>'
 en
-" 1}}} "
+" 2}}} "
