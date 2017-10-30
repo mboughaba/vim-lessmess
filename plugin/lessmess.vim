@@ -37,12 +37,26 @@
 "
 "
 " Prevent loading the plugin multiple times
-" loading {{{1 "
-if exists('g:loaded_lessmess') || &cp
+" loading {{{ "
+if exists('g:loaded_lessmess') || &cp || version < 700
   fini
 en
-" 2}}} "
-" Auto Command {{{3 "
+" }}} "
+
+" Configuration {{{ "
+"
+" Configure list
+" This is used to set the white-space characters to be displayed
+" when highlighting is on.
+"
+if g:enable_lessmess_highlighting == 1
+    " Hide empty white-space characters by default
+    setl nolist
+    setl listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
+en
+" }}} "
+
+" Auto Command {{{ "
 "
 " If configured this will invoke white-space stripping
 "
@@ -52,20 +66,9 @@ if g:enable_lessmess_onsave == 1
         au BufWritePre * StripWhitespaces
     aug end
 en
-" 3}}} "
-" Configuration {{{4 "
-"
-" Configure list
-" This is used to set the white-space characters to be displayed
-" when highlighting is on.
-"
-if g:enable_lessmess_highlighting == 1
-    " Hide empty white-space characters by default
-    se nolist
-    se listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
-en
-" 4}}} "
-" Mapping {{{5 "
+" }}} "
+
+" Mapping {{{ "
 "
 " Set default mapping if not configured by the user
 "
@@ -78,12 +81,14 @@ en
 if g:lessmess_highlighting_map != '' && !hasmapto(':<c-u>ToggleWhitespacesDisplay<cr>', 'n')
     exe 'nn <silent>' g:lessmess_highlighting_map ':ToggleWhitespacesDisplay<cr>'
 en
-" 5}}} "
-" Commands {{{6 "
+" }}} "
+
+" Commands {{{ "
 "
 " Commands
 "
 com! StripWhitespaces cal lessmess#StripWhitespaces()
 com! ToggleWhitespacesDisplay cal lessmess#ToggleWhitespacesDisplay()
-" 6}}} "
+" }}} "
+
 let g:loaded_lessmess = 1

@@ -37,11 +37,11 @@
 "
 "
 " Prevent loading the plugin multiple times
-if exists('g:autoloaded_lessmess') || &cp
+if exists('g:autoloaded_lessmess') || &cp || version < 700
   fini
 en
-" 1}}} "
-" Strip white-spaces {{{2 "
+
+" Strip white-spaces {{{ "
 "
 "
 " Main function
@@ -54,7 +54,7 @@ en
 "
 fun! lessmess#StripWhitespaces()
     " Let's remember where your cursor is
-    let save_cursor = getpos(".")
+    let l:save_cursor = getpos(".")
 
     " Remove Trailing white-space
     " Replace all sequences of white-space containing a
@@ -63,13 +63,14 @@ fun! lessmess#StripWhitespaces()
     :%s/\s\+$//e | retab | %s#\($\n\s*\)\+\%$##e
 
     " You don't want me to make a mess of your cursor
-    cal setpos('.', save_cursor)
+    cal setpos('.', l:save_cursor)
 endf
 "
 " Toggle the list highlighting according to user of plugin list settings
 "
 fun! lessmess#ToggleWhitespacesDisplay()
-    se list!
+    setl list!
 endf
-" 2}}} "
+" }}} "
+
 let g:autoloaded_lessmess = 1
