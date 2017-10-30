@@ -33,13 +33,14 @@
 " Author: Mohamed Boughaba
 " Repository: https://github.com/mboughaba/vim-lessmess
 " Description: This plugin removes all empty white-spaces in a file
-
+"
+"
+"
 " Prevent loading the plugin multiple times
 " loading {{{1 "
-if exists('g:loaded_lessmess_plugin')
-    fini
+if exists('g:loaded_lessmess') || &cp
+  fini
 en
-let g:loaded_lessmess_plugin = 1
 " 2}}} "
 " Auto Command {{{3 "
 "
@@ -85,3 +86,4 @@ en
 com! StripWhitespaces cal lessmess#StripWhitespaces()
 com! ToggleWhitespacesDisplay cal lessmess#ToggleWhitespacesDisplay()
 " 6}}} "
+let g:loaded_lessmess = 1
