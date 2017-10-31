@@ -1,0 +1,8 @@
+let &rtp = '../../,' . &rtp
+let &rtp .= ',../../after'
+let &rtp .= isdirectory('vader.vim') ? ',vader.vim' : ',../../../vader.vim'
+filetype plugin indent on
+syntax enable
+
+let g:enable_lessmess_onsave = 1
+let g:enable_lessmess_highlighting = 1
