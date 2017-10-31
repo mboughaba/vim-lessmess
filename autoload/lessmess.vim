@@ -39,6 +39,17 @@
 " Prevent loading the plugin multiple times
 if exists('g:autoloaded_lessmess') || &cp || version < 700
   fini
+el
+    "
+    " Configure list
+    " This is used to set the white-space characters to be displayed
+    " when highlighting is on.
+    "
+    if g:enable_lessmess_highlighting == 1
+        " Hide empty white-space characters by default
+        setl nolist
+        setl listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
+    en
 en
 
 " Strip white-spaces {{{ "

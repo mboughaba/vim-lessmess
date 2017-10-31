@@ -43,19 +43,6 @@ if exists('g:loaded_lessmess') || &cp || version < 700
 en
 " }}} "
 
-" Configuration {{{ "
-"
-" Configure list
-" This is used to set the white-space characters to be displayed
-" when highlighting is on.
-"
-if g:enable_lessmess_highlighting == 1
-    " Hide empty white-space characters by default
-    setl nolist
-    setl listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
-en
-" }}} "
-
 " Auto Command {{{ "
 "
 " If configured this will invoke white-space stripping
