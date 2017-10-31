@@ -23,6 +23,11 @@ Using [Vundle](https://github.com/VundleVim/Vundle.vim)
 Plugin 'mboughaba/vim-lessmess'
 ```
 
+Using [Plug](https://github.com/junegunn/vim-plug)
+```vim
+Plug 'mboughaba/vim-lessmess'
+```
+
 ## Features
 * Remove trailing white space onsave or on demand.
 * Replace all sequences of Tab with new string of white-space.
