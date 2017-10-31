@@ -41,7 +41,18 @@ To enable/disable white-space highlighting add the following configuration too.
 ```vim
 let g:enable_lessmess_highlighting = 1
 ```
-Default mapping to toggle highlighting is **\<leader>l** which can be changed using
+To toggle highlighting on hidden characters use command
 ```vim
-let g:lessmess_highlighting_map = '<leader>h'
+ToggleWhitespacesDisplay
 ```
+Using custom mapping in your .vimrc
+```vim
+nn <silent> <Leader>l :ToggleWhitespacesDisplay<CR>
+```
+
+## Self promotion
+Why this one and not the other two or three trailing white-spaces removal plugins?
+- This support autoload, slowing down your ViM is not an option
+- This is stupid simple and cannot go wrong
+- This plugin is fully unit tested using [Vader](https://github.com/junegunn/vader.vim)
+- This is still maintained (well I guess by now it is stable XD)

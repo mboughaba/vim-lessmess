@@ -39,7 +39,7 @@
 " Prevent loading the plugin multiple times
 " loading {{{ "
 if exists('g:loaded_lessmess') || &cp || version < 700
-  fini
+    fini
 en
 " }}} "
 
@@ -52,21 +52,6 @@ if g:enable_lessmess_onsave == 1
         au!
         au BufWritePre * StripWhitespaces
     aug end
-en
-" }}} "
-
-" Mapping {{{ "
-"
-" Set default mapping if not configured by the user
-"
-if !exists('g:lessmess_highlighting_map')
-    let g:lessmess_highlighting_map = '<leader>l'
-en
-"
-" Apply default or user mapping
-"
-if g:lessmess_highlighting_map != '' && !hasmapto(':<c-u>ToggleWhitespacesDisplay<cr>', 'n')
-    exe 'nn <silent>' g:lessmess_highlighting_map ':ToggleWhitespacesDisplay<cr>'
 en
 " }}} "
 

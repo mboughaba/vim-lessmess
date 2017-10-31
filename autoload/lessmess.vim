@@ -38,7 +38,7 @@
 "
 " Prevent loading the plugin multiple times
 if exists('g:autoloaded_lessmess') || &cp || version < 700
-  fini
+    fini
 el
     "
     " Configure list
