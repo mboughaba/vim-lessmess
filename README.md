@@ -10,6 +10,12 @@
                                              ┴ ┴└─┘└─┘└─┘└─┘┴ ┴┴ ┴└─┘┴ ┴
 
 # Lessmess VIM Plugin
+
+[![Build Status](https://travis-ci.org/mboughaba/vim-lessmess.svg?branch=master)](https://travis-ci.org/mboughaba/vim-lessmess)
+[![Coverage Status](https://coveralls.io/repos/mboughaba/vim-lessmess/badge.svg)](https://coveralls.io/r/mboughaba/vim-lessmess)
+[![Dependency Status](https://david-dm.org/mboughaba/vim-lessmess.svg)](https://david-dm.org/mboughaba/vim-lessmess)
+
+
 ## Motivation
 Every VIM user has a custom configuration to remove trailing white-spaces. Such a trivial task isn't it?
 Well the idea here is all about moving that custom logic to its own plugin without having an impact on performance.
@@ -37,6 +43,16 @@ Plug 'mboughaba/vim-lessmess'
 There are two functions
 **StripWhitespaces** and **ToggleWhitespacesDisplay**.
 
+To remove trailing white-spaces, fix mixed indent and remove newlines at the end of file all at once
+```vim
+StripWhitespaces
+```
+
+Or using custom mapping in your .vimrc
+```vim
+nn <silent> <Leader>s :StripWhitespaces<CR>
+```
+
 To enable StripWhitespaces **onsave** make sure to include the configuration below in your vimrc
 ```vim
 let g:enable_lessmess_onsave = 1
@@ -46,11 +62,13 @@ To enable/disable white-space highlighting add the following configuration too.
 ```vim
 let g:enable_lessmess_highlighting = 1
 ```
+
 To toggle highlighting on hidden characters use command
 ```vim
 ToggleWhitespacesDisplay
 ```
-Using custom mapping in your .vimrc
+
+Or using custom mapping in your .vimrc
 ```vim
 nn <silent> <Leader>l :ToggleWhitespacesDisplay<CR>
 ```
