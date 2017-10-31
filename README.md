@@ -12,8 +12,6 @@
 # Lessmess VIM Plugin
 
 [![Build Status](https://travis-ci.org/mboughaba/vim-lessmess.svg?branch=master)](https://travis-ci.org/mboughaba/vim-lessmess)
-[![Coverage Status](https://coveralls.io/repos/mboughaba/vim-lessmess/badge.svg)](https://coveralls.io/r/mboughaba/vim-lessmess)
-[![Dependency Status](https://david-dm.org/mboughaba/vim-lessmess.svg)](https://david-dm.org/mboughaba/vim-lessmess)
 
 
 ## Motivation
