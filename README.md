@@ -39,19 +39,19 @@ Plug 'mboughaba/vim-lessmess'
 
 ## Usage
 There are two functions
-**StripWhitespaces** and **ToggleWhitespacesDisplay**.
+**LessmessExecute** and **LessmessDisplayToggle**.
 
 To remove trailing white-spaces, fix mixed indent and remove newlines at the end of file all at once
 ```vim
-StripWhitespaces
+LessmessExecute
 ```
 
 Or using custom mapping in your .vimrc
 ```vim
-nn <silent> <Leader>s :StripWhitespaces<CR>
+nn <silent> <Leader>s :LessmessExecute<CR>
 ```
 
-To enable StripWhitespaces **onsave** make sure to include the configuration below in your vimrc
+To enable LessmessExecute **onsave** make sure to include the configuration below in your vimrc
 ```vim
 let g:enable_lessmess_onsave = 1
 ```
@@ -63,13 +63,24 @@ let g:enable_lessmess_highlighting = 1
 
 To toggle highlighting on hidden characters use command
 ```vim
-ToggleWhitespacesDisplay
+LessmessDisplayToggle
 ```
 
 Or using custom mapping in your .vimrc
 ```vim
-nn <silent> <Leader>l :ToggleWhitespacesDisplay<CR>
+nn <silent> <Leader>l :LessmessDisplayToggle<CR>
 ```
+
+To Enable/disable Lessmess
+```vim
+LessmessToggle
+```
+
+Or using custom mapping in your .vimrc
+```vim
+nn <silent> <Leader>L :LessmessToggle<CR>
+```
+*Lessmess is enabled by default*
 
 ## Running tests
 ```shell

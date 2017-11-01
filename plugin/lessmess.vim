@@ -50,7 +50,7 @@ en
 if exists("g:enable_lessmess_onsave") && g:enable_lessmess_onsave == 1
     aug lessmess#strip_whitespaces
         au!
-        au BufWritePre * StripWhitespaces
+        au BufWritePre * LessmessExecute
     aug end
 en
 " }}} "
@@ -59,8 +59,9 @@ en
 "
 " Commands
 "
-com! StripWhitespaces cal lessmess#StripWhitespaces()
-com! ToggleWhitespacesDisplay cal lessmess#ToggleWhitespacesDisplay()
+com! LessmessExecute cal lessmess#LessmessExecute()
+com! LessmessDisplayToggle cal lessmess#LessmessDisplayToggle()
+com! LessmessToggle cal lessmess#LessmessToggle()
 " }}} "
 
 let g:loaded_lessmess = 1

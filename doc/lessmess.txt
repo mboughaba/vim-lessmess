@@ -1,10 +1,12 @@
 *lessmess.txt*                                                          lessmess
 
 This plugin removes all white-spaces in a file (trailing white-spaces at the end of
-a signe line, empty lines at the end of a file and mixed tabs in the beginning 
+a signe line, empty lines at the end of a file and mixed tabs in the beginning
 of a file.
 
-                                                    *StripWhitespaces*
+                                                    *LessmessExecute*
 Enables white-space removal on file save.
-                                                    *ToggleWhitespacesDisplay*
+                                                    *LessmessDisplayToggle*
 Toggles white-space highlighting.
+                                                    *LessmessToggle*
+Enable/disable lessmess.

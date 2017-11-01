@@ -1,0 +1,142 @@
+﻿"            MIT License
+"
+" Copyright (c) 2017 Mohamed Boughaba
+"
+" Permission is hereby granted, free of charge, to any person obtaining a copy
+" of this software and associated documentation files (the "Software"), to deal
+" in the Software without restriction, including without limitation the rights
+" to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+" copies of the Software, and to permit persons to whom the Software is
+" furnished to do so, subject to the following conditions:
+"
+" The above copyright notice and this permission notice shall be included in all
+" copies or substantial portions of the Software.
+"
+" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+" IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+" FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+" AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+" LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+" OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+" SOFTWARE.
+"
+" ██╗     ███████╗███████╗███████╗███╗   ███╗███████╗███████╗███████╗
+" ██║     ██╔════╝██╔════╝██╔════╝████╗ ████║██╔════╝██╔════╝██╔════╝
+" ██║     █████╗  ███████╗███████╗██╔████╔██║█████╗  ███████╗███████╗
+" ██║     ██╔══╝  ╚════██║╚════██║██║╚██╔╝██║██╔══╝  ╚════██║╚════██║
+" ███████╗███████╗███████║███████║██║ ╚═╝ ██║███████╗███████║███████║
+" ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
+"                                                                  by
+"                                         ┌┬┐┌┐ ┌─┐┬ ┬┌─┐┬ ┬┌─┐┌┐ ┌─┐
+"                                         │││├┴┐│ ││ ││ ┬├─┤├─┤├┴┐├─┤
+"                                         ┴ ┴└─┘└─┘└─┘└─┘┴ ┴┴ ┴└─┘┴ ┴
+" Author: Mohamed Boughaba
+" Repository: https://github.com/mboughaba/vim-lessmess
+" Description: This plugin removes all empty white-spaces in a file
+"
+"
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Let's toggle lessmess via command
+Execute (lessmess should toggle list mode):
+-------------------------------------------
+  LessmessExecute
+  AssertEqual g:disable_lessmess, 0, "Lessmess should be enabled by default"
+  LessmessToggle
+  AssertEqual g:disable_lessmess, 1, "Lessmess should be enabled"
+  LessmessToggle
+  AssertEqual g:disable_lessmess, 0, "Lessmess should be disabled"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Let's disable lessmess
+Before (Initialize):
+--------------------
+  let g:disable_lessmess = 1
+  set paste
+
+After (Initialize):
+-------------------
+  unl! g:disable_lessmess
+  setl nopaste
+
+Given (messless text):
+----------------------
+  Whitespaces are messy, I need to clean them because why not
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Case 1
+"
+" Go to the end of file
+" open a new line after and append some text
+" We make sure to add a bunch of trailling whitespaces
+" at the end of the line
+Do (Insert trailling whitespaces):
+----------------------------------
+  Goopen new line after then add a bunch of whitespace at the end              \<Esc>
+
+Then (lessmess should NOT remove trailling whitespaces):
+--------------------------------------------------------
+  call lessmess#LessmessExecute()
+
+Expect (No more trailling whitespaces):
+--------------------------------------
+  Whitespaces are messy, I need to clean them because why not
+  open new line after then add a bunch of whitespace at the end              
+
+Given (messless text):
+----------------------
+  // Reasons
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Case 2
+"
+" Go to the end of file
+" open new line after
+" insert dummy code on multiple lines
+" We make sure set paste is on to be able to add mixed indent
+" indentation is then added with Tab key
+Do (Insert mixed indent):
+-------------------------
+  Goif !found('life')\<CR>\<Tab>find('life');\<Esc>
+
+Then (lessmess should NOT fix mixed indent):
+--------------------------------------------
+  setl nopaste
+  call lessmess#LessmessExecute()
+
+Expect (No more mixed indent):
+------------------------------
+  // Reasons
+  if !found('life')
+  	find('life');
+
+Given (messless text):
+----------------------
+  Empty newlines at the EOF are evil, I need to clean them
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Case 3
+"
+" Go to the end of file
+" open a bunch of new lines after
+Do (Insert newlines at the end of file):
+---------------------------------------
+  ggo\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<Esc>
+
+Then (lessmess should NOT remove newlines at the end of the file):
+------------------------------------------------------------------
+  call lessmess#LessmessExecute()
+
+Expect (No more empty lines at the EOF):
+----------------------------------------
+  Empty newlines at the EOF are evil, I need to clean them
+  
+  
+  
+  
+  
+  
+  
+  

@@ -50,6 +50,13 @@ el
         setl nolist
         setl listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
     en
+    "
+    "
+    "
+    " Plugin is enabled by default
+    if !exists("g:disable_lessmess")
+        let g:disable_lessmess = 0
+    en
 en
 
 " Strip white-spaces {{{ "
@@ -63,24 +70,36 @@ en
 "
 " It preserves the position of the cursor.
 "
-fun! lessmess#StripWhitespaces()
-    " Let's remember where your cursor is
-    let l:save_cursor = getpos(".")
+fun! lessmess#LessmessExecute()
+    if !exists("g:disable_lessmess")
+        " Let's remember where your cursor is
+        let l:save_cursor = getpos(".")
 
-    " Remove Trailing white-space
-    " Replace all sequences of white-space containing a
-    " <Tab> with new strings of white-space using the new 'tabstop' value given.
-    " Remove Empty lines at the end of file
-    :%s/\s\+$//e | retab | %s#\($\n\s*\)\+\%$##e
+        " Remove Trailing white-space
+        " Replace all sequences of white-space containing a
+        " <Tab> with new strings of white-space using the new 'tabstop' value given.
+        " Remove Empty lines at the end of file
+        :%s/\s\+$//e | retab | %s#\($\n\s*\)\+\%$##e
 
-    " You don't want me to make a mess of your cursor
-    cal setpos('.', l:save_cursor)
+        " You don't want me to make a mess of your cursor
+        cal setpos('.', l:save_cursor)
+    en
 endf
 "
 " Toggle the list highlighting according to user of plugin list settings
 "
-fun! lessmess#ToggleWhitespacesDisplay()
-    setl list!
+fun! lessmess#LessmessDisplayToggle()
+	setl list!
+endf
+"
+" Enable/disable lessmess
+"
+fun! lessmess#LessmessToggle()
+    if g:disable_lessmess == 1
+        let g:disable_lessmess = 0
+    el
+        let g:disable_lessmess = 1
+    en
 endf
 " }}} "
 
