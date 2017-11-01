@@ -58,7 +58,7 @@ Before (Initialize):
 
 After (Initialize):
 -------------------
-  unl! g:disable_lessmess
+  let g:disable_lessmess = 0
   setl nopaste
 
 Given (messless text):
