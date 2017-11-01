@@ -1,8 +1,29 @@
 let &rtp = '../../,' . &rtp
 let &rtp .= ',../../after'
 let &rtp .= isdirectory('vader.vim') ? ',vader.vim' : ',../../../vader.vim'
+se nocompatible
 filetype plugin indent on
 syntax enable
 
-let g:enable_lessmess_onsave = 1
+" Better tabs
+se smarttab
+" Inserts new level of indentation
+se smartindent
+" Copy indentation from previous line
+se autoindent
+" Columns a tab counts for
+se tabstop=4
+" Columns a tab inserts in insert mode
+se softtabstop=4
+" Columns inserted with the re-indent operations
+se shiftwidth=4
+" Always indent by multiple of shift width
+se shiftround
+" Always use spaces instead of tabs
+se expandtab
+" UTF-8 encoding
+se encoding=utf-8
+
+" Lessmess user settings
 let g:enable_lessmess_highlighting = 1
+let g:enable_lessmess_onsave = 1

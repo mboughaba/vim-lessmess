@@ -47,7 +47,7 @@ en
 "
 " If configured this will invoke white-space stripping
 "
-if g:enable_lessmess_onsave == 1
+if exists("g:enable_lessmess_onsave") && g:enable_lessmess_onsave == 1
     aug lessmess#strip_whitespaces
         au!
         au BufWritePre * StripWhitespaces

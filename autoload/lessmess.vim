@@ -45,10 +45,10 @@ el
     " This is used to set the white-space characters to be displayed
     " when highlighting is on.
     "
-    if g:enable_lessmess_highlighting == 1
+    if exists("g:enable_lessmess_highlighting") && g:enable_lessmess_highlighting == 1
         " Hide empty white-space characters by default
         setl nolist
-        setl listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
+        setl listchars="tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬"
     en
 en
 
