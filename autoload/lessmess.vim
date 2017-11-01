@@ -48,8 +48,7 @@ el
     if exists("g:enable_lessmess_highlighting") && g:enable_lessmess_highlighting == 1
         " Hide empty white-space characters by default
         setl nolist
-        "setl listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
-        set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+        setl listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
     en
     "
     "
