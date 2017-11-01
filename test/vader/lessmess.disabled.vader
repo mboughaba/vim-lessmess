@@ -80,7 +80,7 @@ Then (lessmess should NOT remove trailling whitespaces):
 --------------------------------------------------------
   call lessmess#LessmessExecute()
 
-Expect (No more trailling whitespaces):
+Expect (trailling whitespaces remain):
 --------------------------------------
   Whitespaces are messy, I need to clean them because why not
   open new line after then add a bunch of whitespace at the end              
@@ -106,7 +106,7 @@ Then (lessmess should NOT fix mixed indent):
   setl nopaste
   call lessmess#LessmessExecute()
 
-Expect (No more mixed indent):
+Expect (FXIME unsable test in Travis CI - mixed indent remain):
 ------------------------------
   // Reasons
   if !found('life')
@@ -129,7 +129,7 @@ Then (lessmess should NOT remove newlines at the end of the file):
 ------------------------------------------------------------------
   call lessmess#LessmessExecute()
 
-Expect (No more empty lines at the EOF):
+Expect (empty lines at the EOF remain):
 ----------------------------------------
   Empty newlines at the EOF are evil, I need to clean them
   
