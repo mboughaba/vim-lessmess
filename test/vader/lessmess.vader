@@ -1,4 +1,4 @@
-"            MIT License
+﻿"            MIT License
 "
 " Copyright (c) 2017 Mohamed Boughaba
 "
@@ -36,6 +36,16 @@
 "
 "
 "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Preserve paste setting
+Execute (lessmess should preserve paste option):
+------------------------------------------------
+  setl paste
+  LessmessExecute
+  Assert &paste == 1, "paste option should be preserved"
+  setl nopaste
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " We need to adapt the paste setting to test mixed indent
@@ -249,11 +259,11 @@ Expect (No more empty lines at the EOF):
 " We need to adapt the list mode
 Before (Initialize):
 --------------------
-  set nolist
+  setl nolist
 
 After (Initialize):
 -------------------
-  set nolist
+  setl nolist
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Case 10

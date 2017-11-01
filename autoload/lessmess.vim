@@ -74,6 +74,12 @@ fun! lessmess#LessmessExecute()
     if g:disable_lessmess == 0
         " Let's remember where your cursor is
         let l:save_cursor = getpos(".")
+        " We cannot fix mixed indent if paste is enabled
+        " We will temporally set it off execute then put it back
+        let l:restore_paste = &paste
+        if (l:restore_paste == 1)
+          setl nopaste
+        en
 
         " Remove Trailing white-space
         " Replace all sequences of white-space containing a
@@ -81,6 +87,10 @@ fun! lessmess#LessmessExecute()
         " Remove Empty lines at the end of file
         :%s/\s\+$//e | retab | %s#\($\n\s*\)\+\%$##e
 
+        " restore paste option
+        if (l:restore_paste == 1)
+          setl paste
+        en
         " You don't want me to make a mess of your cursor
         cal setpos('.', l:save_cursor)
     en

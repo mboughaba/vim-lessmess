@@ -38,78 +38,63 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Let's toggle lessmess via command
-Execute (lessmess should toggle list mode):
--------------------------------------------
-  LessmessExecute
-  AssertEqual g:disable_lessmess, 0, "Lessmess should be enabled by default"
-  LessmessToggle
-  AssertEqual g:disable_lessmess, 1, "Lessmess should be enabled"
-  LessmessToggle
-  AssertEqual g:disable_lessmess, 0, "Lessmess should be disabled"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Let's disable lessmess
+" 
 Before (Initialize):
 --------------------
-  let g:disable_lessmess = 1
   setl paste
 
 After (Initialize):
 -------------------
-  let g:disable_lessmess = 0
   setl nopaste
 
-Given (messless text):
-----------------------
-  Whitespaces are messy, I need to clean them because why not
+Given (messy text):
+-------------------
+  Bear claw gummi bears brownie cake. Sesame snaps cotton candy powder macaroon.
+  	Gingerbread gummies gummies jelly-o sugar plum oat cake jelly-o danish. 
+      	Fruitcake ice cream chocolate pie brownie chupa chups.
+  	  Caramels dragée pudding tiramisu chupa chups gummi bears.
+  Pudding jelly sugar plum cotton candy lollipop candy canes marshmallow pastry. Dessert cake ice cream.
+  Muffin powder jelly-o muffin halvah danish marzipan lollipop chocolate bar.
+  Jelly beans jelly sweet roll liquorice. Cupcake cheesecake candy. Jujubes cake toffee jelly beans.
+  Bear claw dessert brownie pudding. Marzipan macaroon lollipop.
+  Dragée danish croissant chupa chups toffee brownie cupcake.                                 
+  Sweet brownie bear claw topping pastry.
+  Oat cake jelly beans lemon drops wafer biscuit cheesecake bonbon. 
+  Caramels marshmallow donut cotton candy candy canes.
+  Macaroon pudding brownie donut. Bear claw chocolate danish donut biscuit candy.
+
+
+
+
+
+
+
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Case 1
+" Integration
 "
-" Go to the end of file
-" open a new line after and append some text
-" We make sure to add a bunch of trailling whitespaces
-" at the end of the line
-Do (Insert trailling whitespaces):
+"
+Do ():
 ----------------------------------
-  Goopen new line after then add a bunch of whitespace at the end              \<Esc>
 
-Then (lessmess should NOT remove trailling whitespaces):
---------------------------------------------------------
-  call lessmess#LessmessExecute()
+Then (lessmess should clean all whitespaces):
+---------------------------------------------
+  LessmessExecute
 
-Expect (trailling whitespaces remain):
---------------------------------------
-  Whitespaces are messy, I need to clean them because why not
-  open new line after then add a bunch of whitespace at the end              
-
-Given (messless text):
-----------------------
-  Empty newlines at the EOF are evil, I need to clean them
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Case 3
-"
-" Go to the end of file
-" open a bunch of new lines after
-Do (Insert newlines at the end of file):
----------------------------------------
-  ggo\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<Esc>
-
-Then (lessmess should NOT remove newlines at the end of the file):
-------------------------------------------------------------------
-  call lessmess#LessmessExecute()
-
-Expect (empty lines at the EOF remain):
-----------------------------------------
-  Empty newlines at the EOF are evil, I need to clean them
-  
-  
-  
-  
-  
-  
-  
-  
+Expect (no whitespaces remain):
+-------------------------------
+  Bear claw gummi bears brownie cake. Sesame snaps cotton candy powder macaroon.
+      Gingerbread gummies gummies jelly-o sugar plum oat cake jelly-o danish.
+          Fruitcake ice cream chocolate pie brownie chupa chups.
+        Caramels dragée pudding tiramisu chupa chups gummi bears.
+  Pudding jelly sugar plum cotton candy lollipop candy canes marshmallow pastry. Dessert cake ice cream.
+  Muffin powder jelly-o muffin halvah danish marzipan lollipop chocolate bar.
+  Jelly beans jelly sweet roll liquorice. Cupcake cheesecake candy. Jujubes cake toffee jelly beans.
+  Bear claw dessert brownie pudding. Marzipan macaroon lollipop.
+  Dragée danish croissant chupa chups toffee brownie cupcake.
+  Sweet brownie bear claw topping pastry.
+  Oat cake jelly beans lemon drops wafer biscuit cheesecake bonbon.
+  Caramels marshmallow donut cotton candy candy canes.
+  Macaroon pudding brownie donut. Bear claw chocolate danish donut biscuit candy.
