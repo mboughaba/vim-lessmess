@@ -71,6 +71,12 @@ Or using custom mapping in your .vimrc
 nn <silent> <Leader>l :ToggleWhitespacesDisplay<CR>
 ```
 
+## Running tests
+```shell
+test/vader/run
+```
+
+
 ## Self promotion
 Why this one and not the other two or three trailing white-spaces removal plugins?
 - This support autoload, slowing down your ViM is not an option
