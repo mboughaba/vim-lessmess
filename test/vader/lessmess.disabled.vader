@@ -106,7 +106,7 @@ Then (lessmess should NOT fix mixed indent):
   setl nopaste
   call lessmess#LessmessExecute()
 
-Expect (FXIME unsable test in Travis CI - mixed indent remain):
+Expect (FIXME unsable test in Travis CI - mixed indent remain):
 ------------------------------
   // Reasons
   if !found('life')
