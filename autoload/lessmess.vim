@@ -48,7 +48,8 @@ el
     if exists("g:enable_lessmess_highlighting") && g:enable_lessmess_highlighting == 1
         " Hide empty white-space characters by default
         setl nolist
-        setl listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
+        "setl listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
+        set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
     en
     "
     "
@@ -71,7 +72,7 @@ en
 " It preserves the position of the cursor.
 "
 fun! lessmess#LessmessExecute()
-    if !exists("g:disable_lessmess")
+    if g:disable_lessmess == 0
         " Let's remember where your cursor is
         let l:save_cursor = getpos(".")
 
@@ -89,7 +90,7 @@ endf
 " Toggle the list highlighting according to user of plugin list settings
 "
 fun! lessmess#LessmessDisplayToggle()
-	setl list!
+    setl list!
 endf
 "
 " Enable/disable lessmess
