@@ -87,33 +87,6 @@ Expect (trailling whitespaces remain):
 
 Given (messless text):
 ----------------------
-  // Reasons
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Case 2
-"
-" Go to the end of file
-" open new line after
-" insert dummy code on multiple lines
-" We make sure set paste is on to be able to add mixed indent
-" indentation is then added with Tab key
-Do (Insert mixed indent):
--------------------------
-  Goif !found('life')\<CR>\<Tab>find('life');\<Esc>
-
-Then (lessmess should NOT fix mixed indent):
---------------------------------------------
-  setl nopaste
-  call lessmess#LessmessExecute()
-
-Expect (FIXME unsable test in Travis CI - mixed indent remain):
-------------------------------
-  // Reasons
-  if !found('life')
-  	find('life');
-
-Given (messless text):
-----------------------
   Empty newlines at the EOF are evil, I need to clean them
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
