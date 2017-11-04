@@ -171,17 +171,18 @@ endf
 "
 " TODO: mboughaba: Use faster regex search engine (we can make use of Ag or Ack)
 fun! lessmess#LessmessExecute(force)
+    let l:force_execution = a:force || exists("g:__lessmess_vader_travis_test__")
     try
-        if a:force || s:contains_empty_lines || s:contains_trailing_whitespaces || s:contains_mixed_indent
+        if l:force_execution || s:contains_empty_lines || s:contains_trailing_whitespaces || s:contains_mixed_indent
 
             " Remove Empty lines at the end of file
-            if a:force || s:contains_empty_lines > 0
+            if l:force_execution || s:contains_empty_lines > 0
                 :keepp %s#\($\n\s*\)\+\%$##e | norm!``
             en
 
             " Replace all sequences of white-space containing a
             " <Tab> with new strings of white-space using the new 'tabstop' value given.
-            if a:force || s:contains_mixed_indent > 0
+            if l:force_execution || s:contains_mixed_indent > 0
                 "
                 " We cannot fix mixed indent if paste is enabled
                 " We will temporally set it off execute then put it back
@@ -197,7 +198,7 @@ fun! lessmess#LessmessExecute(force)
             en
 
             " Remove Trailing white-space
-            if a:force || s:contains_trailing_whitespaces > 0
+            if l:force_execution || s:contains_trailing_whitespaces > 0
                 :keepp %s/\s\+$//e | norm!``
             en
         en
