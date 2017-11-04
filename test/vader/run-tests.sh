@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Do not "cd" to any existing "test" dir from CDPATH!
-unset CDPATH
+#unset CDPATH
 
-cd "$( dirname "${BASH_SOURCE[0]}" )" && vim -Nu minivimrc -c 'Vader! *' > /dev/null
+cd "$(dirname "${BASH_SOURCE[0]}")"
+vim -Nu minivimrc +"Vader! ${1:-*}" >/dev/null
