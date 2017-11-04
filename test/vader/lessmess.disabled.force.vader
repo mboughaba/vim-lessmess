@@ -56,7 +56,7 @@ Do (Insert trailing whitespaces):
 
 Then (lessmess should NOT remove trailing whitespaces):
 --------------------------------------------------------
-  LessmessForceExecute
+  sil cal lessmess#LessmessExecute(1)
 
 Expect (trailing whitespaces removed when forced):
 --------------------------------------------------
@@ -78,7 +78,7 @@ Do (Insert newlines at the end of file):
 
 Then (lessmess should NOT remove newlines at the end of the file):
 ------------------------------------------------------------------
-  LessmessForceExecute
+  sil cal lessmess#LessmessExecute(1)
 
 Expect (empty lines at the EOF removed when forced):
 ---------------------------------------------------

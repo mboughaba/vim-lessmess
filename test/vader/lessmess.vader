@@ -32,7 +32,7 @@
 Execute (lessmess should preserve paste option):
 ------------------------------------------------
   setl paste
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
   Assert &paste == 1, "Paste option should be preserved"
   setl nopaste
 
@@ -69,7 +69,7 @@ Do (Insert trailing whitespaces):
 "
 Then (lessmess should remove trailing whitespaces):
 ----------------------------------------------------
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
 
 Expect (No more trailing whitespaces):
 --------------------------------------
@@ -100,7 +100,7 @@ Do (Insert mixed indent):
 Then (lessmess should fix mixed indent):
 ----------------------------------------
   setl nopaste
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
 
 Expect (No more mixed indent):
 ------------------------------
@@ -127,7 +127,7 @@ Do (Insert newlines at the end of file):
 "
 Then (lessmess should remove newlines at the end of the file):
 --------------------------------------------------------------
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
 
 Expect (No more empty lines at the EOF):
 ----------------------------------------
@@ -139,7 +139,7 @@ Expect (No more empty lines at the EOF):
 Execute (lessmess should keep user's search history):
 -----------------------------------------------------
   let b:last_user_search = @/
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
   AssertEqual b:last_user_search, @/, "Last search should have been preserved"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -148,7 +148,7 @@ Execute (lessmess should keep user's search history):
 Execute (lessmess should keep user's cursor position):
 ------------------------------------------------------
   let b:current_cursor_position = getpos(".")
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
   AssertEqual b:current_cursor_position, getpos("."), "Cursor position should have been preserved"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -166,7 +166,7 @@ After (Initialize):
 "
 Execute (lessmess should set and preserve user settings):
 ---------------------------------------------------------
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
   AssertEqual g:enable_lessmess_highlighting, 1, "User configuration shouldn't be changed"
   Assert !&list
   AssertEqual 250, &updatetime, "updatetime option should have been customized"
@@ -199,7 +199,7 @@ Execute (lessmess should preserve last search):
 -----------------------------------------------
   cal search('vader$', 'nw')
   let b:last_search = @/
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
   LessmessForceExecute
   AssertEqual @/, b:last_search, "Last search should have been preserved"
 

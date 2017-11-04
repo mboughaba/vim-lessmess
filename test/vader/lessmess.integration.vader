@@ -79,7 +79,7 @@ Do (Trigger idle event):
 "
 Then (lessmess should clean all whitespaces):
 ---------------------------------------------
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
 
 Expect (no whitespaces remain):
 -------------------------------

@@ -31,16 +31,16 @@
 " Let's toggle lessmess via command
 Execute (lessmess should toggle list mode):
 -------------------------------------------
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
   AssertEqual g:disable_lessmess, 0, "Lessmess should be enabled by default"
   let b:lessmess_status = lessmess#LessmessStatus()
   AssertEqual b:lessmess_status, 'ON', "Lessmess should be enabled by default"
-  LessmessToggle
+  sil cal lessmess#LessmessToggle()
   AssertEqual g:disable_lessmess, 1, "Lessmess should be enabled"
   AssertEqual 4000, &updatetime, "updatetime option should have been reset"
   let b:lessmess_status = lessmess#LessmessStatus()
   AssertEqual b:lessmess_status, 'OFF', "Lessmess should have been disabled"
-  LessmessToggle
+  sil cal lessmess#LessmessToggle()
   AssertEqual g:disable_lessmess, 0, "Lessmess should be disabled"
   AssertEqual 250, &updatetime, "updatetime option should have been customized"
   let b:lessmess_status = lessmess#LessmessStatus()
@@ -77,7 +77,7 @@ Do (Insert trailing whitespaces):
 
 Then (lessmess should NOT remove trailing whitespaces):
 --------------------------------------------------------
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
 
 Expect (trailing whitespaces remain):
 --------------------------------------
@@ -100,7 +100,7 @@ Do (Insert newlines at the end of file):
 
 Then (lessmess should NOT remove newlines at the end of the file):
 ------------------------------------------------------------------
-  LessmessExecute
+  sil cal lessmess#LessmessExecute(0)
 
 Expect (empty lines at the EOF remain):
 ----------------------------------------
