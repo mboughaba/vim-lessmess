@@ -36,6 +36,3 @@ let g:enable_lessmess_onsave = 1
 " FIXME: mboughaba: Currently Vader doesn't set the file as modified:
 " https://github.com/junegunn/vader.vim/issues/143
 let g:__lessmess_vader_test__ = 1
-
-" FIXME: mboughaba: doautocommand CursorHold not triggered in Travis CI.
-let g:__lessmess_vader_travis_test__ = 1
