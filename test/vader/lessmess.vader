@@ -189,7 +189,7 @@ After (Initialize):
 Execute (lessmess should toggle list mode):
 -------------------------------------------
   Assert !&list, "list mode shouldn't be set"
-  LessmessDisplayToggle
+  sil cal lessmess#LessmessDisplayToggle()
   Assert &list, "toggle should set list mode"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -200,6 +200,16 @@ Execute (lessmess should preserve last search):
   cal search('vader$', 'nw')
   let b:last_search = @/
   sil cal lessmess#LessmessExecute(0)
-  LessmessForceExecute
+  sil cal lessmess#LessmessExecute(1)
   AssertEqual @/, b:last_search, "Last search should have been preserved"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Case 14
+"
+Execute (check commands exist):
+-----------------------------------------------
+  Assert exists(":LessmessDisplayToggle")
+  Assert exists(":LessmessExecute")
+  Assert exists(":LessmessForceExecute")
+  Assert exists(":LessmessToggle")
 
