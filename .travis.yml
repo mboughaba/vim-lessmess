@@ -14,4 +14,4 @@ script:
   - export PATH="/usr/local/bin:$PATH"
   - export LD_LIBRARY_PATH=~/.rvm/rubies/ruby-2.2.3/lib
   - vim --version
-  - ./test/run-tests.sh
+  - ./test/vader/run-tests.sh
