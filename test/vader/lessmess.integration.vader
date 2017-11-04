@@ -20,13 +20,6 @@
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 " SOFTWARE.
 "
-" ██╗     ███████╗███████╗███████╗███╗   ███╗███████╗███████╗███████╗
-" ██║     ██╔════╝██╔════╝██╔════╝████╗ ████║██╔════╝██╔════╝██╔════╝
-" ██║     █████╗  ███████╗███████╗██╔████╔██║█████╗  ███████╗███████╗
-" ██║     ██╔══╝  ╚════██║╚════██║██║╚██╔╝██║██╔══╝  ╚════██║╚════██║
-" ███████╗███████╗███████║███████║██║ ╚═╝ ██║███████╗███████║███████║
-" ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
-"
 " Author: Mohamed Boughaba
 " Repository: https://github.com/mboughaba/vim-lessmess
 " Description: This plugin removes all empty white-spaces in a file
@@ -39,10 +32,12 @@
 Before (Initialize):
 --------------------
   setl paste
+  let g:disable_lessmess = 0
 
 After (Initialize):
 -------------------
   setl nopaste
+  let g:disable_lessmess = 0
 
 Given (messy text):
 -------------------
@@ -72,10 +67,16 @@ Given (messy text):
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Integration
 "
-"
-Do ():
+" We need to mark the file as modified by adding the first line above
+" Also it is important to triggered the idle event to make sure dirty check 
+" was performed
+Do (Trigger idle event):
 ----------------------------------
+  :doautocmd CursorHold\<CR>
 
+"
+"
+"
 Then (lessmess should clean all whitespaces):
 ---------------------------------------------
   LessmessExecute

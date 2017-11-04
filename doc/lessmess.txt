@@ -1,12 +1,89 @@
 *lessmess.txt*                                                          lessmess
+For Vim version 7.2 and above
 
-This plugin removes all white-spaces in a file (trailing white-spaces at the end of
-a signe line, empty lines at the end of a file and mixed tabs in the beginning
-of a file.
+			        --------------
+				       Lessmess
+			        --------------
 
+Author:  Mohamed Boughaba (undasight at gmail dot com)
+
+                            *lessmess-copyright*
+           MIT License
+
+Copyright (c) 2017 Mohamed Boughaba
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+==============================================================================
+						*lessmess* *lessmess-contents*
+1. About~
+
+This plugin removes all white-spaces in a file (trailing white-spaces at the 
+end of line, empty lines at the end of a file and mixed tabs in the beginning
+of a line. Plugin only run when needed, meaning when the file is modified and 
+contains some sort of white-space.
+Plugin preserve last search and cursor position.
+
+==============================================================================
+2. Features~
                                                     *LessmessExecute*
-Enables white-space removal on file save.
+If enabled, removes trailing white-spaces, empty line at the end of the file 
+and fix mixed indent.
+
+                                                    *LessmessForceExecute*
+Always removes trailing white-spaces, empty line at the end of the file and 
+fixes mixed indent.
+
                                                     *LessmessDisplayToggle*
 Toggles white-space highlighting.
+
                                                     *LessmessToggle*
 Enable/disable lessmess.
+
+==============================================================================
+3. Usage~
+
+To remove trailing white-spaces, fix mixed indent and remove newlines at the 
+end of file all at once use command:
+LessmessExecute
+This can be done also using custom mapping in your .vimrc, for example
+nn <silent> <Leader>s :LessmessExecute<CR>
+
+To toggle highlighting of white-space characters use command
+LessmessDisplayToggle
+This can be done also using custom mapping in your .vimrc
+nn <silent> <Leader>l :LessmessDisplayToggle<CR>
+Lessmess highlighting is enabled by default
+
+To Enable/disable Lessmess
+LessmessToggle
+Or using custom mapping in your .vimrc
+nn <silent> <Leader>L :LessmessToggle<CR>
+Lessmess is enabled by default
+
+==============================================================================
+3. Configuration~
+
+To enable LessmessExecute on write make sure to include the configuration 
+below in your vimrc
+let g:enable_lessmess_onsave = 1
+
+To enable/disable white-space highlighting add the following configuration too.
+let g:enable_lessmess_highlighting = 1
+

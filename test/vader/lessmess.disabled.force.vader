@@ -28,26 +28,6 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Let's toggle lessmess via command
-Execute (lessmess should toggle list mode):
--------------------------------------------
-  LessmessExecute
-  AssertEqual g:disable_lessmess, 0, "Lessmess should be enabled by default"
-  let b:lessmess_status = lessmess#LessmessStatus()
-  AssertEqual b:lessmess_status, 'ON', "Lessmess should be enabled by default"
-  LessmessToggle
-  AssertEqual g:disable_lessmess, 1, "Lessmess should be enabled"
-  AssertEqual 4000, &updatetime, "updatetime option should have been reset"
-  let b:lessmess_status = lessmess#LessmessStatus()
-  AssertEqual b:lessmess_status, 'OFF', "Lessmess should have been disabled"
-  LessmessToggle
-  AssertEqual g:disable_lessmess, 0, "Lessmess should be disabled"
-  AssertEqual 250, &updatetime, "updatetime option should have been customized"
-  let b:lessmess_status = lessmess#LessmessStatus()
-  AssertEqual b:lessmess_status, 'ON', "Lessmess should have been enabled"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
 " Let's disable lessmess
 Before (Initialize):
 --------------------
@@ -73,16 +53,15 @@ Given (messless text):
 Do (Insert trailing whitespaces):
 ----------------------------------
   Goopen new line after then add a bunch of whitespace at the end              \<Esc>
-  :doautocmd CursorHold\<CR>
 
 Then (lessmess should NOT remove trailing whitespaces):
 --------------------------------------------------------
-  LessmessExecute
+  LessmessForceExecute
 
-Expect (trailing whitespaces remain):
---------------------------------------
+Expect (trailing whitespaces removed when forced):
+--------------------------------------------------
   Whitespaces are messy, I need to clean them because why not
-  open new line after then add a bunch of whitespace at the end              
+  open new line after then add a bunch of whitespace at the end
 
 Given (messless text):
 ----------------------
@@ -96,20 +75,11 @@ Given (messless text):
 Do (Insert newlines at the end of file):
 ---------------------------------------
   ggo\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<Esc>
-  :doautocmd CursorHold\<CR>
 
 Then (lessmess should NOT remove newlines at the end of the file):
 ------------------------------------------------------------------
-  LessmessExecute
+  LessmessForceExecute
 
-Expect (empty lines at the EOF remain):
-----------------------------------------
+Expect (empty lines at the EOF removed when forced):
+---------------------------------------------------
   Empty newlines at the EOF are evil, I need to clean them
-  
-  
-  
-  
-  
-  
-  
-  

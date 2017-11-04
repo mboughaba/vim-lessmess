@@ -27,129 +27,12 @@
 "
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Case 7
 "
-" Case 1: Preserve paste setting
-Execute (lessmess should preserve paste option):
-------------------------------------------------
-  setl paste
-  LessmessExecute
-  Assert &paste == 1, "Paste option should be preserved"
-  setl nopaste
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" We need to adapt the paste setting to test mixed indent
-Before (Initialize):
---------------------
-  setl paste
-
-After (Initialize):
--------------------
-  setl nopaste
-
-Given (messless text):
-----------------------
-  Whitespaces are messy, I need to clean them because why not
-  Whitespaces are messy, I need to clean them because why not
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Case 2
-"
-" Go to the end of file
-" open a new line after and append some text
-" We make sure to add a bunch of trailing whitespaces
-" at the end of the line
-Do (Insert trailing whitespaces):
-----------------------------------
-  Goopen new line after then add a bunch of whitespace at the end              \<Esc>
-  :doautocmd CursorHold\<CR>
-
-"
-"
-"
-Then (lessmess should remove trailing whitespaces):
-----------------------------------------------------
-  LessmessExecute
-
-Expect (No more trailing whitespaces):
---------------------------------------
-  Whitespaces are messy, I need to clean them because why not
-  Whitespaces are messy, I need to clean them because why not
-  open new line after then add a bunch of whitespace at the end
-
-Given (messless text):
-----------------------
-  // Reasons
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Case 3
-"
-" Go to the end of file
-" open new line after
-" insert dummy code on multiple lines
-" We make sure set paste is on to be able to add mixed indent
-" indentation is then added with Tab key
-Do (Insert mixed indent):
--------------------------
-  Goif !found('life')\<CR>\<Tab>    find('life');\<Esc>
-  :doautocmd CursorHold\<CR>
-
-"
-"
-"
-Then (lessmess should fix mixed indent):
-----------------------------------------
-  setl nopaste
-  LessmessExecute
-
-Expect (No more mixed indent):
-------------------------------
-  // Reasons
-  if !found('life')
-          find('life');
-
-Given (messless text):
-----------------------
-  Empty newlines at the EOF are evil, I need to clean them
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Case 4
-"
-" Go to the end of file
-" open a bunch of new lines after
-Do (Insert newlines at the end of file):
----------------------------------------
-  ggo\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<Esc>
-  :doautocmd CursorHold\<CR>
-
-"
-"
-"
-Then (lessmess should remove newlines at the end of the file):
---------------------------------------------------------------
-  LessmessExecute
-
-Expect (No more empty lines at the EOF):
-----------------------------------------
-  Empty newlines at the EOF are evil, I need to clean them
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Case 5
-"
-Execute (lessmess should keep user's search history):
------------------------------------------------------
-  let b:last_user_search = @/
-  LessmessExecute
-  AssertEqual b:last_user_search, @/, "Last search should have been preserved"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Case 6
-"
-Execute (lessmess should keep user's cursor position):
+Execute (lessmess should preserve user configuration):
 ------------------------------------------------------
-  let b:current_cursor_position = getpos(".")
-  LessmessExecute
-  AssertEqual b:current_cursor_position, getpos("."), "Cursor position should have been preserved"
+  Assert exists("g:enable_lessmess_highlighting"), "User configuration shouldn't be changed"
+  Assert exists("g:enable_lessmess_onsave"), "User configuration shouldn't be changed"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -174,32 +57,90 @@ Execute (lessmess should set and preserve user settings):
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" We need to adapt the list mode
+" We need to adapt the paste setting to test mixed indent
+" We will enable plugin onsave
 Before (Initialize):
 --------------------
-  setl nolist
+  setl paste
 
 After (Initialize):
 -------------------
-  setl nolist
+  setl nopaste
+
+Given (messless text):
+----------------------
+  Whitespaces are messy, I need to clean them because why not
+  Whitespaces are messy, I need to clean them because why not
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Case 12
+" Case 9
 "
-Execute (lessmess should toggle list mode):
--------------------------------------------
-  Assert !&list, "list mode shouldn't be set"
-  LessmessDisplayToggle
-  Assert &list, "toggle should set list mode"
+" Go to the end of file
+" open a new line after and append some text
+" We make sure to add a bunch of trailing whitespaces
+" at the end of the line
+Do (Insert trailing whitespaces):
+----------------------------------
+  Goopen new line after then add a bunch of whitespace at the end              \<Esc>
+  :doautocmd CursorHold\<CR>
+  :doautocmd BufWritePre\<CR>
+
+Then (lessmess should remove trailing whitespaces onsave):
+-----------------------------------------------------------
+
+Expect (No more trailing whitespaces):
+---------------------------------------
+  Whitespaces are messy, I need to clean them because why not
+  Whitespaces are messy, I need to clean them because why not
+  open new line after then add a bunch of whitespace at the end
+
+Given (messless text):
+----------------------
+  // Reasons
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Case 13
+" Case 10
 "
-Execute (lessmess should preserve last search):
+" Go to the end of file
+" open new line after
+" insert dummy code on multiple lines
+" We make sure set paste is on to be able to add mixed indent
+" indentation is then added with Tab key
+Do (Insert mixed indent):
+-------------------------
+  Goif !found('life')\<CR>    \<Tab>find('life');\<Esc>
+  :setl nopaste\<CR>
+  :doautocmd CursorHold\<CR>
+  :doautocmd BufWritePre\<CR>
+
+Then (lessmess should fix mixed indent onsave):
 -----------------------------------------------
-  cal search('vader$', 'nw')
-  let b:last_search = @/
-  LessmessExecute
-  LessmessForceExecute
-  AssertEqual @/, b:last_search, "Last search should have been preserved"
+
+Expect (No more mixed indent):
+-----------------------------
+  // Reasons
+  if !found('life')
+          find('life');
+
+Given (messless text):
+----------------------
+  Empty newlines at the EOF are evil, I need to clean them
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Case 11
+"
+" Go to the end of file
+" open a bunch of new lines after
+Do (Insert newlines at the end of file):
+----------------------------------------
+  ggo\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<Esc>
+  :doautocmd CursorHold\<CR>
+  :doautocmd BufWritePre\<CR>
+
+Then (lessmess should remove newlines at the end of the file onsave):
+---------------------------------------------------------------------
+
+Expect (No more empty lines at the EOF):
+----------------------------------------
+  Empty newlines at the EOF are evil, I need to clean them
 

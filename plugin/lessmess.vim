@@ -20,13 +20,6 @@
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 " SOFTWARE.
 "
-" ██╗     ███████╗███████╗███████╗███╗   ███╗███████╗███████╗███████╗
-" ██║     ██╔════╝██╔════╝██╔════╝████╗ ████║██╔════╝██╔════╝██╔════╝
-" ██║     █████╗  ███████╗███████╗██╔████╔██║█████╗  ███████╗███████╗
-" ██║     ██╔══╝  ╚════██║╚════██║██║╚██╔╝██║██╔══╝  ╚════██║╚════██║
-" ███████╗███████╗███████║███████║██║ ╚═╝ ██║███████╗███████║███████║
-" ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
-"
 " Author: Mohamed Boughaba
 " Repository: https://github.com/mboughaba/vim-lessmess
 " Description: This plugin removes all empty white-spaces in a file
@@ -35,7 +28,7 @@
 "
 " Prevent loading the plugin multiple times
 " loading {{{ "
-if exists('g:loaded_lessmess') || &cp || version < 700
+if exists('g:loaded_lessmess') || &cp || version < 702
     fini
 en
 " }}} "
@@ -45,20 +38,32 @@ en
 " If configured this will invoke white-space stripping
 "
 if exists("g:enable_lessmess_onsave") && g:enable_lessmess_onsave == 1
-    aug lessmess#strip_whitespaces
+    aug lessmess#strip_whitespaces_onsave
         au!
+        " TODO: mboughaba: Add disabled FileTypes
         au BufWritePre * LessmessExecute
     aug end
 en
+"
+" To minimize the impact of the heavy regex replace
+" we will setup an autocommand to run when ViM is idle
+"
+" With this we will check if the file is dirty
+"
+aug lessmess#dirty_checking
+    au!
+    au CursorHold * sil cal lessmess#_dirtyCheck()
+aug end
 " }}} "
 
 " Commands {{{ "
 "
 " Commands
 "
-com! LessmessExecute cal lessmess#LessmessExecute()
-com! LessmessDisplayToggle cal lessmess#LessmessDisplayToggle()
-com! LessmessToggle cal lessmess#LessmessToggle()
+com! LessmessDisplayToggle sil cal lessmess#LessmessDisplayToggle()
+com! LessmessExecute sil cal lessmess#LessmessExecute(0)
+com! LessmessForceExecute sil cal lessmess#LessmessExecute(1)
+com! LessmessToggle sil cal lessmess#LessmessToggle()
 " }}} "
 
 let g:loaded_lessmess = 1
