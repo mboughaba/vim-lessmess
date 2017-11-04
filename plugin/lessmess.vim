@@ -41,7 +41,7 @@ if exists("g:enable_lessmess_onsave") && g:enable_lessmess_onsave == 1
     aug lessmess#strip_whitespaces_onsave
         au!
         " TODO: mboughaba: Add disabled FileTypes
-        au BufWritePre * LessmessExecute
+        au BufWritePre * sil cal lessmess#LessmessExecute(0)
     aug end
 en
 "
