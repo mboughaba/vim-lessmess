@@ -1,0 +1,95 @@
+﻿"            MIT License
+"
+" Copyright (c) 2017 Mohamed Boughaba
+"
+" Permission is hereby granted, free of charge, to any person obtaining a copy
+" of this software and associated documentation files (the "Software"), to deal
+" in the Software without restriction, including without limitation the rights
+" to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+" copies of the Software, and to permit persons to whom the Software is
+" furnished to do so, subject to the following conditions:
+"
+" The above copyright notice and this permission notice shall be included in all
+" copies or substantial portions of the Software.
+"
+" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+" IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+" FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+" AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+" LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+" OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+" SOFTWARE.
+"
+" Author: Mohamed Boughaba
+" Repository: https://github.com/mboughaba/vim-lessmess
+" Description: This plugin removes all empty white-spaces in a file
+"
+"
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Let's disable lessmess for vader files
+Before (Initialize):
+--------------------
+  let b:lessmess_disable_buffer = 1
+  setl paste
+
+After (Initialize):
+-------------------
+  unl b:lessmess_disable_buffer
+  setl nopaste
+
+Given (messless text):
+----------------------
+  Whitespaces are messy, I need to clean them because why not
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Case 1
+"
+" Go to the end of file
+" open a new line after and append some text
+" We make sure to add a bunch of trailing whitespaces
+" at the end of the line
+Do (Insert trailing whitespaces):
+----------------------------------
+  Goopen new line after then add a bunch of whitespace at the end              \<Esc>
+  :doautocmd CursorHold\<CR>
+
+Then (lessmess should NOT remove trailing whitespaces):
+--------------------------------------------------------
+  sil cal lessmess#LessmessExecute(0)
+
+Expect (trailing whitespaces remain):
+--------------------------------------
+  Whitespaces are messy, I need to clean them because why not
+  open new line after then add a bunch of whitespace at the end              
+
+Given (messless text):
+----------------------
+  Empty newlines at the EOF are evil, I need to clean them
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Case 3
+"
+" Go to the end of file
+" open a bunch of new lines after
+Do (Insert newlines at the end of file):
+---------------------------------------
+  ggo\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<CR>\<Esc>
+  :doautocmd CursorHold\<CR>
+
+Then (lessmess should NOT remove newlines at the end of the file):
+------------------------------------------------------------------
+  sil cal lessmess#LessmessExecute(0)
+
+Expect (empty lines at the EOF remain):
+----------------------------------------
+  Empty newlines at the EOF are evil, I need to clean them
+  
+  
+  
+  
+  
+  
+  
+  

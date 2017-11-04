@@ -174,6 +174,13 @@ fun! lessmess#LessmessExecute(force)
     try
         if a:force || s:contains_empty_lines || s:contains_trailing_whitespaces || s:contains_mixed_indent
 
+            "
+            "
+            " Do nothing if the user disabled the plugin for this specific
+            " buffer
+            if !a:force && exists("b:lessmess_disable_buffer")
+                retu
+            en
             " Remove Empty lines at the end of file
             if a:force || s:contains_empty_lines > 0
                 :keepp %s#\($\n\s*\)\+\%$##e | norm!``
@@ -274,6 +281,10 @@ endf
 "
 fun! lessmess#LessmessStatus()
     if g:disable_lessmess == 0
+        if exists("b:lessmess_disable_buffer")
+            retu 'ON but not for the current buffer'
+        en
+
         retu 'ON'
     el
         retu 'OFF'

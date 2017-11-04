@@ -40,7 +40,6 @@ en
 if exists("g:enable_lessmess_onsave") && g:enable_lessmess_onsave == 1
     aug lessmess#strip_whitespaces_onsave
         au!
-        " TODO: mboughaba: Add disabled FileTypes
         au BufWritePre * sil cal lessmess#LessmessExecute(0)
     aug end
 en
@@ -64,6 +63,7 @@ com! LessmessDisplayToggle sil cal lessmess#LessmessDisplayToggle()
 com! LessmessExecute sil cal lessmess#LessmessExecute(0)
 com! LessmessForceExecute sil cal lessmess#LessmessExecute(1)
 com! LessmessToggle sil cal lessmess#LessmessToggle()
+com! LessmessStatus echo lessmess#LessmessStatus()
 " }}} "
 
 let g:loaded_lessmess = 1

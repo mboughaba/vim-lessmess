@@ -212,4 +212,5 @@ Execute (check commands exist):
   Assert exists(":LessmessExecute")
   Assert exists(":LessmessForceExecute")
   Assert exists(":LessmessToggle")
+  Assert exists(":LessmessStatus")
 
