@@ -94,21 +94,30 @@ fun! s:containsMixedIndent()
     "
     "
     " Check if there is mixed indent
-    let s:contains_mixed_indent = search('\v(^\t+ +)|(^ +\t+)', 'nw')
+    " no need to check again if previous search succeeded
+    if s:contains_mixed_indent == 0
+        let s:contains_mixed_indent = search('\v(^\t+ +)|(^ +\t+)', 'nw')
+    en
 endf
 
 "
 " Does it contain trailing whitespaces?
 "
 fun! s:containsTrailingWhitespaces()
-    let s:contains_trailing_whitespaces = search('\v\s+$', 'nw')
+    " no need to check again if previous search succeeded
+    if s:contains_trailing_whitespaces == 0
+        let s:contains_trailing_whitespaces = search('\v\s+$', 'nw')
+    en
 endf
 
 "
 " Does it contain empty lines?
 "
 fun! s:containsEmptylines()
-    let s:contains_empty_lines = search('\v($\n\s*)+%$', 'nw')
+    " no need to check again if previous search succeeded
+    if s:contains_empty_lines == 0
+        let s:contains_empty_lines = search('\v($\n\s*)+%$', 'nw')
+    en
 endf
 
 "
