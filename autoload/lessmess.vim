@@ -38,7 +38,6 @@ el
     if exists("g:enable_lessmess_highlighting") && g:enable_lessmess_highlighting == 1
         " Hide empty white-space characters by default
         setl nolist
-        setl listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
     en
     "
     "
@@ -181,6 +180,8 @@ fun! lessmess#LessmessExecute(force)
             if !a:force && exists("b:lessmess_disable_buffer")
                 retu
             en
+            " done.
+            " We should add it then only if there is something to be done?
             " Remove Empty lines at the end of file
             if a:force || s:contains_empty_lines > 0
                 :keepp %s#\($\n\s*\)\+\%$##e | norm!``
@@ -282,7 +283,7 @@ endf
 fun! lessmess#LessmessStatus()
     if g:disable_lessmess == 0
         if exists("b:lessmess_disable_buffer")
-            retu 'ON but not for the current buffer'
+            retu 'OFF for the current buffer'
         en
 
         retu 'ON'

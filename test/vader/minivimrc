@@ -28,6 +28,9 @@ se expandtab
 se encoding=utf-8
 " updatetime
 let &updatetime = 4000
+" We don't set listchars in the plugin but we will make sure
+" the setting is preserved as is
+se listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬
 
 " Lessmess user settings
 let g:enable_lessmess_highlighting = 1
