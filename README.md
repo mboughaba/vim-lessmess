@@ -115,7 +115,7 @@ test/vader/run
 Why this one and not the other two or three trailing white-spaces removal plugins?
 1. This is fully autoloaded, slowing down your ViM startup time was not an option
 2. This is designed with performance in mind. The plugin doesn't do live updates, it does the heavy lifting when vim is idle.
-⋅⋅1. Making use of Vim jobs is in the pipe.
+    1. Making use of Vim jobs is in the pipe.
 3. This is stupid simple and cannot go wrong
 4. This plugin is fully unit tested using [Vader](https://github.com/junegunn/vader.vim)
 5. This is still actively maintained
