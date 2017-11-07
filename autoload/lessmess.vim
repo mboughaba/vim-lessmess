@@ -95,8 +95,20 @@ fun! s:containsMixedIndent()
     "
     " Check if there is mixed indent
     " no need to check again if previous search succeeded
+    "
+    " Sometime there will be only tabs.
+    " We should check if expandtab is on
+    "     => This means that tabs are converted to spaces
+    " TODO: Maybe we will need to capture and restore paste option
+    " This is because expandtab is impact by paste option.
     if s:contains_mixed_indent == 0
-        let s:contains_mixed_indent = search('\v(^\t+ +)|(^ +\t+)', 'nw')
+        if &expandtab
+            " If spaces are being used and we find a line starting with tab.
+            let s:contains_mixed_indent = search('\v(^( +)?\t+)', 'nw')
+        el
+            " We only check mixed indents (tabs + spaces)
+            let s:contains_mixed_indent = search('\v(^\t+ +)|(^ +\t+)', 'nw')
+        en
     en
 endf
 
