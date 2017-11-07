@@ -57,10 +57,11 @@ To enable/disable white-space highlighting add the following configuration too.
 let g:enable_lessmess_highlighting = 1
 ```
 
-To toggle highlighting on hidden characters use command. This is simply calling vim native toggle list
+To toggle highlighting of hidden characters, use command below.
 ```vim
 LessmessDisplayToggle
 ```
+This is simply calling vim native toggle list, I highly believe that syntax highlighting for white-spaces is a bit overkill. So why not just use ViM built-in list.
 
 Or using custom mapping in your .vimrc
 ```vim
@@ -114,7 +115,7 @@ test/vader/run
 Why this one and not the other two or three trailing white-spaces removal plugins?
 1. This is fully autoloaded, slowing down your ViM startup time was not an option
 2. This is designed with performance in mind. The plugin doesn't do live updates, it does the heavy lifting when vim is idle.
-- Making use of Vim jobs is in the pipe.
+..1. Making use of Vim jobs is in the pipe.
 3. This is stupid simple and cannot go wrong
 4. This plugin is fully unit tested using [Vader](https://github.com/junegunn/vader.vim)
 5. This is still actively maintained
