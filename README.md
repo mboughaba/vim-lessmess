@@ -105,4 +105,5 @@ Why this one and not the other two or three trailing white-spaces removal plugin
     1. Making use of Vim jobs is in the pipe.
 3. Absolutely no configuration is required to get started. Everything follows the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle)
 4. This plugin is fully unit tested using [Vader](https://github.com/junegunn/vader.vim)
-5. This is actively maintained
+5. This running on [Travis CI](https://travis-ci.org/mboughaba/vim-lessmess)
+6. This is actively maintained
