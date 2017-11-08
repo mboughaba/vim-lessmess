@@ -31,18 +31,9 @@ if exists('g:autoloaded_lessmess') || &cp || version < 702
     fini
 el
     "
-    " Configure list
-    " This is used to set the white-space characters to be displayed
-    " when highlighting is on.
-    "
-    if exists("g:enable_lessmess_highlighting") && g:enable_lessmess_highlighting == 1
-        " Hide empty white-space characters by default
-        setl nolist
-    en
-    "
-    "
     "
     " Plugin is enabled by default
+    "
     if !exists("g:disable_lessmess")
         let g:disable_lessmess = 0
     en

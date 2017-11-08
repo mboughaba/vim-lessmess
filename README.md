@@ -37,63 +37,33 @@ Plug 'mboughaba/vim-lessmess'
 There are two main functions
 **LessmessExecute** and **LessmessDisplayToggle**.
 
-To remove trailing white-spaces, fix mixed indent and remove newlines at the end of file all at once
+### Automagically remove all annoying white-spaces
+White-spaces removal onsave is enabled by default. Just save the buffer and the file is clean.
+
+### Manually remove all annoying white-spaces
+First, to disable LessmessExecute **onsave** make sure to include the configuration below in your vimrc
+```vim
+let g:enable_lessmess_onsave = 0
+```
+To remove (on demand) trailing white-spaces, fix mixed indent and remove newlines at the end of file all at once
 ```vim
 LessmessExecute
 ```
 
-Or using custom mapping in your .vimrc
-```vim
-nn <silent> <Leader>s :LessmessExecute<CR>
-```
-
-To enable LessmessExecute **onsave** make sure to include the configuration below in your vimrc
-```vim
-let g:enable_lessmess_onsave = 1
-```
-
-To enable/disable white-space highlighting add the following configuration too.
-```vim
-let g:enable_lessmess_highlighting = 1
-```
-
+### Simple white-spaces highlighting
 To toggle highlighting of hidden characters, use command below.
 ```vim
 LessmessDisplayToggle
 ```
 This is simply calling vim native toggle list, I highly believe that syntax highlighting for white-spaces is a bit overkill. So why not just use ViM built-in list.
 
-Or using custom mapping in your .vimrc
-```vim
-nn <silent> <Leader>l :LessmessDisplayToggle<CR>
-```
-
-To Enable/disable Lessmess
+### Configuration
+1. To Enable/disable Lessmess
 ```vim
 LessmessToggle
 ```
 
-Or using custom mapping in your .vimrc
-```vim
-nn <silent> <Leader>L :LessmessToggle<CR>
-```
-*Lessmess is enabled by default*
-
-When Lessmess is disabled, white-spaces can be removed by calling Force execute:
-```vim
-LessmessForceExecute
-```
-
-To check status of the plugin one should call
-```vim
-LessmessStatus
-```
- To completely disable the plugin, setting below can be added to .vimrc
- ```vim
-let g:disable_lessmess = 1
- ```
-
-Plugin can be disabled per buffer. An example would disabling white-spaces trimming for all vader test files
+2. Plugin can be disabled per buffer. An example would disabling white-spaces trimming for all vader test files
 ```vim
 "
 " Lessmess disable by FileType
@@ -102,6 +72,23 @@ aug disable_lessmess
     au!
     au FileType vader let b:lessmess_disable_buffer = 1
 aug end
+```
+
+3. To completely disable the plugin, setting below can be added to .vimrc
+ ```vim
+let g:disable_lessmess = 1
+ ```
+
+### Handy tool
+When **Lessmess is disabled**, white-spaces can be removed by calling **force** execute:
+```vim
+LessmessForceExecute
+```
+
+### Checking plugin status
+To check status of the plugin one should call
+```vim
+LessmessStatus
 ```
 
 ## Running tests
@@ -116,6 +103,6 @@ Why this one and not the other two or three trailing white-spaces removal plugin
 1. This is fully autoloaded, slowing down your ViM startup time was not an option
 2. This is designed with performance in mind. The plugin doesn't do live updates, it does the heavy lifting when vim is idle.
     1. Making use of Vim jobs is in the pipe.
-3. This is stupid simple and cannot go wrong
+3. Absolutely no configuration is required to get started. Everything follows the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle)
 4. This plugin is fully unit tested using [Vader](https://github.com/junegunn/vader.vim)
-5. This is still actively maintained
+5. This is actively maintained

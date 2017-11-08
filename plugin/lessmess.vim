@@ -30,6 +30,13 @@
 " loading {{{ "
 if exists('g:loaded_lessmess') || &cp || version < 702
     fini
+el
+    "
+    " Enable white-spaces removal on save by default
+    "
+    if !exists("g:enable_lessmess_onsave")
+        let g:enable_lessmess_onsave = 1
+    en
 en
 " }}} "
 
