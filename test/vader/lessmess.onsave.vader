@@ -31,7 +31,6 @@
 "
 Execute (lessmess should preserve user configuration):
 ------------------------------------------------------
-  Assert exists("g:enable_lessmess_highlighting"), "User configuration shouldn't be changed"
   Assert exists("g:enable_lessmess_onsave"), "User configuration shouldn't be changed"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -50,7 +49,6 @@ After (Initialize):
 Execute (lessmess should set and preserve user settings):
 ---------------------------------------------------------
   sil cal lessmess#LessmessExecute(0)
-  AssertEqual g:enable_lessmess_highlighting, 1, "User configuration shouldn't be changed"
   Assert !&list
   AssertEqual 250, &updatetime, "updatetime option should have been customized"
   AssertEqual "tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬", &listchars, "listchars options should have been preserved"

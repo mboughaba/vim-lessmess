@@ -167,7 +167,6 @@ After (Initialize):
 Execute (lessmess should set and preserve user settings):
 ---------------------------------------------------------
   sil cal lessmess#LessmessExecute(0)
-  AssertEqual g:enable_lessmess_highlighting, 1, "User configuration shouldn't be changed"
   Assert !&list
   AssertEqual 250, &updatetime, "updatetime option should have been customized"
   AssertEqual "tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:⎵,eol:¬", &listchars, "listchars options should have been preserved"
