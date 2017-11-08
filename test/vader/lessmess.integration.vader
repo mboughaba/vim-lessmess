@@ -31,7 +31,7 @@
 " 
 Before (Initialize):
 --------------------
-  setl paste
+  setl nopaste
   let g:disable_lessmess = 0
 
 After (Initialize):
@@ -45,8 +45,8 @@ Given (messy text):
   	Gingerbread gummies gummies jelly-o sugar plum oat cake jelly-o danish. 
       	Fruitcake ice cream chocolate pie brownie chupa chups.
   	  Caramels dragée pudding tiramisu chupa chups gummi bears.
-  Pudding jelly sugar plum cotton candy lollipop candy canes marshmallow pastry. Dessert cake ice cream.
-  Muffin powder jelly-o muffin halvah danish marzipan lollipop chocolate bar.
+  			Pudding jelly sugar plum cotton candy lollipop candy canes marshmallow pastry. Dessert cake ice cream.
+  Muffin powder jelly-o muffin halvah danish marzipan lollipop chocolate bar.
   Jelly beans jelly sweet roll liquorice. Cupcake cheesecake candy. Jujubes cake toffee jelly beans.
   Bear claw dessert brownie pudding. Marzipan macaroon lollipop.
   Dragée danish croissant chupa chups toffee brownie cupcake.                                 
@@ -87,8 +87,8 @@ Expect (no whitespaces remain):
       Gingerbread gummies gummies jelly-o sugar plum oat cake jelly-o danish.
           Fruitcake ice cream chocolate pie brownie chupa chups.
         Caramels dragée pudding tiramisu chupa chups gummi bears.
-  Pudding jelly sugar plum cotton candy lollipop candy canes marshmallow pastry. Dessert cake ice cream.
-  Muffin powder jelly-o muffin halvah danish marzipan lollipop chocolate bar.
+              Pudding jelly sugar plum cotton candy lollipop candy canes marshmallow pastry. Dessert cake ice cream.
+  Muffin powder jelly-o muffin halvah danish marzipan lollipop chocolate bar.
   Jelly beans jelly sweet roll liquorice. Cupcake cheesecake candy. Jujubes cake toffee jelly beans.
   Bear claw dessert brownie pudding. Marzipan macaroon lollipop.
   Dragée danish croissant chupa chups toffee brownie cupcake.
