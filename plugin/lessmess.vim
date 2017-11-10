@@ -74,3 +74,4 @@ com! LessmessStatus echo lessmess#LessmessStatus()
 " }}} "
 
 let g:loaded_lessmess = 1
+" vim: se sw=4 sts=4 et fdm=marker:
