@@ -26,8 +26,9 @@
 "
 "
 "
-" Prevent loading the plugin multiple times
-" loading {{{ "
+" loading {{{
+"
+"
 if exists('g:loaded_lessmess') || &cp || version < 702
     fini
 el
@@ -38,9 +39,9 @@ el
         let g:enable_lessmess_onsave = 1
     en
 en
-" }}} "
+" }}}
 
-" Auto Command {{{ "
+" Auto Command {{{
 "
 " If configured this will invoke white-space stripping
 "
@@ -60,9 +61,9 @@ aug lessmess#dirty_checking
     au!
     au CursorHold * sil cal lessmess#_dirtyCheck()
 aug end
-" }}} "
+" }}}
 
-" Commands {{{ "
+" Commands {{{
 "
 " Commands
 "
@@ -71,7 +72,7 @@ com! LessmessExecute sil cal lessmess#LessmessExecute(0)
 com! LessmessForceExecute sil cal lessmess#LessmessExecute(1)
 com! LessmessToggle sil cal lessmess#LessmessToggle()
 com! LessmessStatus echo lessmess#LessmessStatus()
-" }}} "
+" }}}
 
 let g:loaded_lessmess = 1
 " vim: se sw=4 sts=4 et fdm=marker:

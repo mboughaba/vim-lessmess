@@ -25,8 +25,9 @@
 " Description: This plugin removes all empty white-spaces in a file
 "
 "
+" loading {{{
 "
-" Prevent loading the plugin multiple times
+"
 if exists('g:autoloaded_lessmess') || &cp || version < 702
     fini
 el
@@ -58,7 +59,9 @@ el
     let s:contains_mixed_indent = 0
     let s:contains_trailing_whitespaces = 0
 en
+" }}}
 
+" Private API {{{
 "
 " Store paste option
 "
@@ -160,11 +163,9 @@ fun! lessmess#_dirtyCheck()
         endt
     en
 endf
+" }}}
 
-" ==============================================================================
-"                                  Public API
-" ==============================================================================
-" Strip white-spaces {{{ "
+" Public API {{{
 "
 "
 " Main function
@@ -303,7 +304,7 @@ fun! lessmess#LessmessStatus()
         retu 'OFF'
     en
 endf
-" }}} "
+" }}}
 
 let g:autoloaded_lessmess = 1
 " vim: se sw=4 sts=4 et fdm=marker:
