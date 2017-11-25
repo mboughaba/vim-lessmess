@@ -15,10 +15,13 @@ This plugin is capable of doing the following things for you:
 * Remove trailing white-spaces at the end of a line;
 * Fix mixed-indent, in other words, replace all sequences of 'Tab' character with new string of white-space;
 * Remove empty lines at the end of the file;
+
 By default the plugin does all of the above when you save a file, but this can be disabled to be able to execute clean-up on demand only.
+
 
 ## Instalation
 1. (natively) Using ViM 8 packages
+
 First, create a directory structure representing a plugin-group, say `whitespace`, as follows:
 
 ```shell
@@ -32,7 +35,9 @@ git clone https://github.com/mboughaba/vim-lessmess.git
 git clone https://github.com/mboughaba/vim-lessmess.git
 ```
 
+
 2. Using [Vundle](https://github.com/VundleVim/Vundle.vim)
+
 First, declare the plugin in you `.vimrc`
 ```vim
 Plugin 'mboughaba/vim-lessmess'
@@ -42,7 +47,9 @@ Then run plugin install command
 :PluginInstall
 ```
 
+
 3. Using [Plug](https://github.com/junegunn/vim-plug)
+
 First, declare the plug in you `.vimrc`
 ```vim
 Plug 'mboughaba/vim-lessmess'
@@ -52,12 +59,14 @@ Then run plug install command
 :PlugInstall
 ```
 
+
 ## Motivation
 Every ViM user has a custom configuration to remove trailing white-spaces, mine was `autocmd BufWritePre * :%s/\s\+$//e`
 Such a trivial task isn't it? Well the idea here is all about moving that custom logic to its own plugin without having an impact on performance.
 
 Keeping it stupid simple. I had the code around in my ![.vimrc](https://github.com/mboughaba/dotfiles/blob/master/.vimrc) and I decided to make a plugin out of it.
 This is fully tested and blazing fast but if you don't mind white-spaces in your files :alien: this is the best time to navigate away :rocket:
+
 
 ## Usage
 Out of the box, this plugin will clean trailing white-space, fix mixed-indent and remove empty lines at the end of a file when the file is saved.
