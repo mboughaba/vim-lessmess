@@ -79,6 +79,10 @@ Lessmess is enabled by default.
 When plugin is disabled white-spaces removal can be forced using command:
 LessmessForceExecute
 
+To make the plugin ask for confirmation before removing white-spaces following
+configuration needs to be added
+let g:confirm_whitespace_removal = 1
+
 ==============================================================================
 3. Configuration~
 
