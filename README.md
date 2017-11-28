@@ -139,6 +139,8 @@ LessmessStatus
 ```vim
 let g:confirm_whitespace_removal = 1
 ```
+**This feature is disabled by default.**
+
 Before execution, the plugin will ask something similar to: `White-spaces found in file, remove them? y/N: `, user then decides to apply `y` or skip `N` (default) white-space removal.
 Confirmation is done once per buffer, this means that the plugin will remember user's choice for a given buffer.
 
