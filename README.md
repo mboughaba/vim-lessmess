@@ -17,6 +17,7 @@ This plugin is capable of doing the following things for you:
 * Remove empty lines at the end of the file;
 
 By default the plugin does all of the above when you save a file, but this can be disabled to be able to execute clean-up on demand only.
+Additionally, The plugin can be configuration to request user confirmation before removing white-spaces.
 
 
 ## Instalation
@@ -72,8 +73,10 @@ This is fully tested and blazing fast but if you don't mind white-spaces in your
 Out of the box, this plugin will clean trailing white-space, fix mixed-indent and remove empty lines at the end of a file when the file is saved.
 In more technical details, there are two important functions `LessmessExecute` and `LessmessDisplayToggle`.
 
+
 ### Automagically remove all annoying white-spaces :heavy_check_mark:
 White-spaces removal `onsave` is enabled by default. Just save the buffer and the file is clean.
+
 
 ### Manually remove all annoying white-spaces
 First, to disable lessmess `onsave` make sure to include the configuration below in your `.vimrc`
@@ -85,12 +88,14 @@ To remove (on demand) trailing white-spaces, fix mixed-indent and remove newline
 LessmessExecute
 ```
 
+
 ### Simple white-spaces highlighting
 I personally don't see a need of white-space highlighting, if I know they will be removed when I save. Nevertheless, to toggle highlighting of hidden characters, use command below.
 ```vim
 LessmessDisplayToggle
 ```
 This is simply calling vim native toggle list, I highly believe that syntax highlighting for white-spaces is a bit overkill. So why not just use ViM built-in list.
+
 
 ### Configuration
 1. To Enable/disable Lessmess
@@ -114,17 +119,31 @@ aug end
 let g:disable_lessmess = 1
  ```
 
+
 ### Handy tool
 When **Lessmess is disabled**, white-spaces can be removed by calling `force` execute:
 ```vim
 LessmessForceExecute
 ```
 
+
 ### Checking plugin status
 To check status of the plugin one should call
 ```vim
 LessmessStatus
 ```
+
+
+# Advanced configuration
+1. Lessmess can be configured to request user's confirmation before removing white-space. To enable this feature following configuration need to be added to the user's `.vimrc`
+```vim
+let g:confirm_whitespace_removal = 1
+```
+**This feature is disabled by default.**
+
+Before execution, the plugin will ask something similar to: `White-spaces found in file, remove them? y/N: `, user then decides to apply `y` or skip `N` (default) white-space removal.
+Confirmation is done once per buffer, this means that the plugin will remember user's choice for a given buffer.
+
 
 ## Running tests
 check the setup in the test folder.

@@ -39,6 +39,17 @@ el
         let g:disable_lessmess = 0
     en
     "
+    " Plugin won't ask for confirmation unless configured to do so
+    " Once authorization is granted this will be the default for the current
+    " buffer
+    "
+    if !exists("g:confirm_whitespace_removal")
+        let g:confirm_whitespace_removal = 0
+    en
+    if !exists("b:confirmed_whitespace_removal")
+        let b:confirmed_whitespace_removal = 0
+    en
+    "
     "
     " Set the interval in which ViM will dirty check the file
     " this is triggered after idle
@@ -141,6 +152,34 @@ fun! s:isEditable()
 endf
 
 "
+" Check if user confirms removal of whitespaces
+"
+fun! s:isRemovalConfirmed()
+    "
+    " If the user confirmed removal of whitespace for the current buffer
+    " we will remember his choice
+    "
+    if exists("b:confirmed_whitespace_removal") && b:confirmed_whitespace_removal
+        retu 1
+    en
+
+    "
+    " As user confirmation
+    "
+    let l:res = input('White-spaces found in file, remove them? y/N: ')
+    if l:res == 'y'
+        echomsg "OK! White-spaces will be removed for the current buffer"
+        let b:confirmed_whitespace_removal = 1
+        retu 1
+    el
+        let b:confirmed_whitespace_removal = 0
+        echomsg "Fine! White-space removal will be skipped for the current buffer"
+        retu 0
+    en
+    retu 0
+endf
+
+"
 " Dirty check
 "
 " To minimize performance impact onsave
@@ -187,17 +226,26 @@ fun! lessmess#LessmessExecute(force)
         if a:force || s:contains_empty_lines || s:contains_trailing_whitespaces || s:contains_mixed_indent
 
             "
-            "
             " Do nothing if the user disabled the plugin for this specific
             " buffer
             if !a:force && exists("b:lessmess_disable_buffer")
                 retu
             en
-            " done.
+
+            "
+            " If configured, ask confirmation before removing white-spaces
+            if !a:force && g:confirm_whitespace_removal && !s:isRemovalConfirmed()
+                retu
+            en
+
+            " Let's remember where the cursor is
+            let l:save_cursor = getpos(".")
+
+            "
             " We should add it then only if there is something to be done?
             " Remove Empty lines at the end of file
             if a:force || s:contains_empty_lines > 0
-                :keepp %s#\($\n\s*\)\+\%$##e | norm!``
+                :keepp %s#\($\n\s*\)\+\%$##e
             en
 
             " Replace all sequences of white-space containing a
@@ -210,7 +258,7 @@ fun! lessmess#LessmessExecute(force)
                 "
                 "
                 " retab the whole file
-                sil retab | norm!``
+                sil retab
                 "
                 "
                 " restore paste option
@@ -219,9 +267,12 @@ fun! lessmess#LessmessExecute(force)
 
             " Remove Trailing white-space
             if a:force || s:contains_trailing_whitespaces > 0
-                :keepp %s/\s\+$//e | norm!``
+                :keepp %s/\s\+$//e
             en
         en
+
+        " Restore cursor position
+        cal setpos('.', l:save_cursor)
     cat
         echomsg 'lessmess: darn it'
         echomsg v:exception
