@@ -39,7 +39,7 @@ git clone https://github.com/mboughaba/vim-lessmess.git
 
 2. Using [Vundle](https://github.com/VundleVim/Vundle.vim)
 
-First, declare the plugin in you `.vimrc`
+First, declare the plugin in your `.vimrc`
 ```vim
 Plugin 'mboughaba/vim-lessmess'
 ```
@@ -51,7 +51,7 @@ Then run plugin install command
 
 3. Using [Plug](https://github.com/junegunn/vim-plug)
 
-First, declare the plug in you `.vimrc`
+First, declare the plug in your `.vimrc`
 ```vim
 Plug 'mboughaba/vim-lessmess'
 ```
@@ -70,11 +70,11 @@ This is fully tested and blazing fast but if you don't mind white-spaces in your
 
 
 ## Usage
-Out of the box, this plugin will clean trailing white-space, fix mixed-indent and remove empty lines at the end of a file when the file is saved.
+Out of the box, this plugin will clean trailing white-spaces, fix mixed-indents and remove empty lines at the end of a file when the file is being saved.
 In more technical details, there are two important functions `LessmessExecute` and `LessmessDisplayToggle`.
 
 
-### Automagically remove all annoying white-spaces :heavy_check_mark:
+### Automagically :dizzy: remove all annoying white-spaces :heavy_check_mark:
 White-spaces removal `onsave` is enabled by default. Just save the buffer and the file is clean.
 
 
@@ -83,18 +83,18 @@ First, to disable lessmess `onsave` make sure to include the configuration below
 ```vim
 let g:enable_lessmess_onsave = 0
 ```
-To remove (on demand) trailing white-spaces, fix mixed-indent and remove newlines at the end of file all at once, call the following command:
+To remove `ondemand` trailing white-spaces, fix mixed-indents and remove newlines at the end of file all at once, call the following command:
 ```vim
 LessmessExecute
 ```
 
 
 ### Simple white-spaces highlighting
-I personally don't see a need of white-space highlighting, if I know they will be removed when I save. Nevertheless, to toggle highlighting of hidden characters, use command below.
+I personally don't see a need of white-space highlighting, as long as I am confident they will be removed when I save. Nevertheless, to toggle highlighting of hidden characters, use command below.
 ```vim
 LessmessDisplayToggle
 ```
-This is simply calling vim native toggle list, I highly believe that syntax highlighting for white-spaces is a bit overkill. So why not just use ViM built-in list.
+This is simply calling vim native toggle list, I highly believe that syntax highlighting for white-spaces is a bit overkill in many cases so why not just use something as simple as ViM built-in list.
 
 
 ### Configuration
@@ -103,7 +103,7 @@ This is simply calling vim native toggle list, I highly believe that syntax high
 LessmessToggle
 ```
 
-2. Plugin can be disabled per buffer. An example would disabling white-spaces trimming for all `vader` test files
+2. Plugin can be disabled per buffer. An example would disabling white-space trimming for all `vader` test files
 ```vim
 "
 " Lessmess disable by FileType
@@ -120,8 +120,8 @@ let g:disable_lessmess = 1
  ```
 
 
-### Handy tool
-When **Lessmess is disabled**, white-spaces can be removed by calling `force` execute:
+### Handy tool :wrench:
+When **Lessmess is disabled**, white-spaces can be removed by calling `force` execute :hammer::
 ```vim
 LessmessForceExecute
 ```
@@ -134,8 +134,8 @@ LessmessStatus
 ```
 
 
-# Advanced configuration
-1. Lessmess can be configured to request user's confirmation before removing white-space. To enable this feature following configuration need to be added to the user's `.vimrc`
+### Advanced configuration
+1. Lessmess can be configured to request user's confirmation before removing white-spaces. To enable this feature, following configuration need to be added to the user's `.vimrc`
 ```vim
 let g:confirm_whitespace_removal = 1
 ```
@@ -153,7 +153,7 @@ test/vader/run
 
 
 ## Self promotion
-Why this one and not the other two or three trailing white-spaces removal plugins?
+Why this one and not the other two trailing white-spaces removal plugins :question:
 1. This is fully `autoloaded`, slowing down your ViM startup time was not an option
 2. This is designed with performance in mind. The plugin doesn't do live updates, it does the heavy lifting when ViM is idle.
     1. Making use of Vim jobs is in the pipe.
@@ -161,3 +161,6 @@ Why this one and not the other two or three trailing white-spaces removal plugin
 4. This plugin is fully unit tested using [Vader](https://github.com/junegunn/vader.vim)
 5. This running on [Travis CI](https://travis-ci.org/mboughaba/vim-lessmess)
 6. This is actively maintained
+7. More features can be added easily on top of the base we have so far
+
+:wave: Hey :grey_exclamation: if you like the plugin and find it useful hit :star:
