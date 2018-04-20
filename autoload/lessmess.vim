@@ -69,6 +69,18 @@ el
     let s:contains_empty_lines = 0
     let s:contains_mixed_indent = 0
     let s:contains_trailing_whitespaces = 0
+    "
+    " Initialise statusline symbols
+    let s:symbols = {
+                \   'empty': 'empty',
+                \   'mixed_indent': 'mixed-indent',
+                \   'trailing': 'trailing',
+                \}
+    if exists("g:lessmess_symbols")
+        for [k, v] in items(g:lessmess_symbols)
+            let s:symbols[k] = v
+        endfor
+    en
 en
 " }}}
 
@@ -354,6 +366,22 @@ fun! lessmess#LessmessStatus()
     el
         retu 'OFF'
     en
+endf
+"
+" Return a statusline
+"
+fun! lessmess#statusline()
+    let elements = []
+    if s:contains_empty_lines > 0
+        let elements = elements + [s:symbols.empty . ':' . s:contains_empty_lines]
+    en
+    if s:contains_mixed_indent > 0
+        let elements = elements + [s:symbols.mixed_indent . ':' . s:contains_mixed_indent]
+    en
+    if s:contains_trailing_whitespaces > 0
+        let elements = elements + [s:symbols.trailing . ':' . s:contains_trailing_whitespaces]
+    en
+    return join(elements, ' ')
 endf
 " }}}
 
