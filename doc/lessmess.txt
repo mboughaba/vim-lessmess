@@ -84,8 +84,34 @@ configuration needs to be added
 let g:confirm_whitespace_removal = 1
 
 ==============================================================================
-3. Configuration~
+4. Configuration~
 
 To disable LessmessExecute on write make sure to include the configuration
 below in your vimrc. The setting is enabled by default.
 let g:enable_lessmess_onsave = 0
+
+==============================================================================
+5. Statusline~
+                                                    *lessmess#statusline()*
+Add %{lessmess#statusline()} to your statusline to get an indicator of the
+mess within the current file. It will notify you as to when there are:
+whitespaces, mixed identation or empty lines. If you don't have a statusline,
+this one matches the default when 'ruler' is set:
+>
+    set statusline=%<%f\ %h%m%r%{lessmess#statusline()}%=%-14.(%l,%c%V%)\ %P
+<
+
+The *g:lessmess_symbols* option
+
+The symbols in the statusline may be tweaked with the this option.
+
+Default: "{'empty' : 'empty',
+         \ 'mixed_indent': 'mixed-indent',
+         \ 'trailing': 'trailing'}"
+>
+  let g:lessmess_symbols = {
+        \ 'empty' : 'empty',
+        \ 'mixed_indent' : 'mixed-indent',
+        \ 'trailing' : 'trailing',
+        \}
+<
